@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React from 'react'
 import axios from 'axios';
+//import 'semantic-ui-css/semantic.min.css' //Does not work for some odd reason.
 import { Header, List } from 'semantic-ui-react';
+import { useEffect, useState } from "react";
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <div>
-      <Header as='h2' icon='users' content='reactivities'/>
+      <Header as='h1' icon='users' content='reactivities'/>
       <List>
       {activities.map((activity :any) => (
             <li key={activity.id}>
