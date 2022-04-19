@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
+import { act } from 'react-dom/test-utils';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -36,6 +37,13 @@ function handleFormClose(){
   setEditMode(false);
 }
 
+function handleCreateOrEditActivity(activity: Activity){
+  activity.id ? setActivities([...activities.filter(x => x.id !== activity.id), activity])
+  : setActivities([...activities, activity]);
+  setEditMode(false);
+  setSelectedActivity(activity);
+}
+
   return (
     <>
       <NavBar openForm={handleFormOpen} />
@@ -48,6 +56,7 @@ function handleFormClose(){
           editMode={editMode}
           openForm={handleFormOpen}
           closeForm={handleFormClose}
+          createOrEdit={handleCreateOrEditActivity}
         />
       </Container>
     </>
