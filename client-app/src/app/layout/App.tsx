@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css' //Does not work for some odd reason.
-import { Container, Header, List } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import { useEffect, useState } from "react";
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
-import { act } from 'react-dom/test-utils';
+import {v4 as uuid} from 'uuid';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -39,7 +39,7 @@ function handleFormClose(){
 
 function handleCreateOrEditActivity(activity: Activity){
   activity.id ? setActivities([...activities.filter(x => x.id !== activity.id), activity])
-  : setActivities([...activities, activity]);
+  : setActivities([...activities, {...activity, id: uuid()}]);
   setEditMode(false);
   setSelectedActivity(activity);
 }
