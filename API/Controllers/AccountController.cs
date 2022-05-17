@@ -59,7 +59,7 @@ namespace API.Controllers
 
             var user = new AppUser
             {
-                Displayname = registerDto.DisplayName,
+                DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
                 UserName = registerDto.Username
             };
@@ -86,7 +86,7 @@ namespace API.Controllers
         {
             return new UserDto
                 {
-                    DisplayName= user.Displayname,
+                    DisplayName= user.DisplayName,
                     Image = null,
                     Token = tokenService.CreateToken(user),
                     Username = user.UserName
