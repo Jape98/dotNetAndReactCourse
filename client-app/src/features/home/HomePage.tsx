@@ -14,7 +14,7 @@ export default observer(function HomePage() {
                     <Image size='massive' src='/assets/logo.png' alt='logo' style={{marginBottom: 12}} />
                     Reactivities
                 </Header>
-                {userStore. isLoggedIn ? (
+                {userStore.isLoggedIn ? (
                     <>
                         <Header as='h2' inverted content='Welcome to reactivities' />
                         <Button as={Link} to={'/activities'} size='huge' inverted>
