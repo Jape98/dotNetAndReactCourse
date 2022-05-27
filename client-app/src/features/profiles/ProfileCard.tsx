@@ -1,4 +1,3 @@
-import { truncate } from "fs";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { Card, Icon, Image } from "semantic-ui-react";
@@ -25,7 +24,7 @@ export default observer(function ProfileCard({profile}: Props) {
             </Card.Content>
             <Card.Content extra>
                 <Icon name = 'user' />
-                2 followers
+                {profile.followersCount} followers
             </Card.Content>
         </Card>
     )
