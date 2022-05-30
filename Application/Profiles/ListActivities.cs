@@ -21,8 +21,13 @@ namespace Application.Profiles
 
         public class Handler : IRequestHandler<Query, Result<List<UserActivityDto>>>
         {
-        private readonly DataContext context;
-        private readonly IMapper mapper;
+            private readonly DataContext context;
+            private readonly IMapper mapper;
+            public Handler(DataContext context, IMapper mapper)
+            {
+                this.mapper = mapper;
+                this.context = context;
+            }
 
             public async Task<Result<List<UserActivityDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
@@ -31,7 +36,6 @@ namespace Application.Profiles
                     .OrderBy(a => a.Activity.Date)
                     .ProjectTo<UserActivityDto>(mapper.ConfigurationProvider)
                     .AsQueryable();
-
                 query = request.Predicate switch
                 {
                     "past" => query.Where(a => a.Date <= DateTime.Now),
@@ -40,7 +44,6 @@ namespace Application.Profiles
                     _ => query.Where(a => a.Date >= DateTime.Now)
                 };
                 var activities = await query.ToListAsync();
-
                 return Result<List<UserActivityDto>>.Success(activities);
             }
         }
