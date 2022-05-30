@@ -174,8 +174,10 @@ export default class ActivityStore {
                     this.selectedActivity = updatedActivity as Activity;
                 }
             })
+            this.loading = false;
         } catch (error) {
             console.log(error);
+            this.loading = false;
         }
     }
 

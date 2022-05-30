@@ -15,8 +15,10 @@ namespace Application.Core
         {
             string currentUsername = null;
             CreateMap<Activity, Activity>();
+
             CreateMap<Activity, ActivityDto>()
-                .ForMember(d => d.HostUsername, o => o.MapFrom(s => s.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
+                .ForMember(d => d.HostUsername, o => o.MapFrom(s => s.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName))
+                .ForMember(d => d.Date, o => o.MapFrom(s => DateTime.SpecifyKind(s.Date, DateTimeKind.Utc)));
 
             CreateMap<ActivityAttendee, AttendeeDto>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
