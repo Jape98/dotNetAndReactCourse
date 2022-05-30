@@ -22,7 +22,7 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(async response => {
-    if (process.env.NODE_ENV == 'development') await sleep(1000);
+    if (process.env.NODE_ENV === 'development') await sleep(1000);
      const pagination = response.headers['pagination'];
      if (pagination) {
          response.data = new PaginatedResult(response.data, JSON.parse(pagination));
@@ -68,18 +68,18 @@ const responseBody = <T> (response: AxiosResponse<T>) => response.data
 
 const requests = {
     get: <T> (url: string) => axios.get<T>(url).then(responseBody),
-    post: <T> (url: string, body: {}) => axios.post(url, body).then(responseBody),
-    put: <T> (url: string,  body: {}) => axios.put(url, body).then(responseBody),
-    delete: <T>  (url: string) => axios.delete(url).then(responseBody),
+    post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
+    put: (url: string,  body: {}) => axios.put(url, body).then(responseBody),
+    delete: (url: string) => axios.delete(url).then(responseBody),
 }
 
 const Activities = {
     list: (params: URLSearchParams) => axios.get<PaginatedResult<Activity[]>>('/activities', {params}).then(responseBody),
     details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-    create: (activity: ActivityFormValues) => requests.post<void>('/activities', activity),
-    update: (activity: ActivityFormValues) => requests.put<void>(`/activities/${activity.id}`, activity),
-    delete: (id: string) => requests.delete<void>(`/activities/${id}`),
-    attend: (id:string) => requests.post<void>(`/activities/${id}/attend`, {})
+    create: (activity: ActivityFormValues) => requests.post('/activities', activity),
+    update: (activity: ActivityFormValues) => requests.put(`/activities/${activity.id}`, activity),
+    delete: (id: string) => requests.delete(`/activities/${id}`),
+    attend: (id:string) => requests.post(`/activities/${id}/attend`, {})
 }
 
 const Account = {
