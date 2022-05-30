@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Application.Profiles
 {
@@ -15,6 +11,5 @@ namespace Application.Profiles
 
         [JsonIgnore]
         public string HostUsername { get; set; }
-
     }
 }
