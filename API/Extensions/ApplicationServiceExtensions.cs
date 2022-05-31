@@ -21,7 +21,10 @@ namespace API.Extensions
             });
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                //opt.UseSqlite(config.GetConnectionString("ConnectionStrings"));
+
+                var connectionString = config.GetConnectionString("WebApiDatabase");
+                opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
             services.AddCors(opt =>
             {
