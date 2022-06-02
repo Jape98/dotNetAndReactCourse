@@ -1,5 +1,4 @@
 using Application.Followers;
-using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
