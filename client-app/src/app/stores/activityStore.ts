@@ -238,7 +238,7 @@ export default class ActivityStore {
     }
 
     clearSelecterActivity= () => {
-        this.selectedActivity = undefined;
+        runInAction(() => this.selectedActivity = undefined);
     }
 
     updateAteendeeFollowing = (username : string) => {

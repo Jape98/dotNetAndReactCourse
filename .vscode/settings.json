@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7b35228e-94ae-4fbc-b248-ec15a516d24e/microsoft.web/sites/subscriptions/7b35228e-94ae-4fbc-b248-ec15a516d24e/resourceGroups/sivu_group/providers/Microsoft.Web/sites/sivuApi",
+    "appService.deploySubpath": "."
+}
