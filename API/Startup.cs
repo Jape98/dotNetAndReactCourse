@@ -55,7 +55,8 @@ namespace API
             {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
-            } else {
+            } else
+            {
 
                 app.Use(async (context, next) =>
                 {
