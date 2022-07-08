@@ -1,13 +1,3 @@
-using System.Text;
-using API.Services;
-using Domain;
-using Infrastructure.Security;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using Persistence;
-
 namespace API.Extensions
 {
     public static class IdentityServiceExtensions
@@ -31,7 +21,9 @@ namespace API.Extensions
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = key,
                         ValidateIssuer = false,
-                        ValidateAudience = false
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero
                     };
                     //validation for activity chat
                     opt.Events = new JwtBearerEvents

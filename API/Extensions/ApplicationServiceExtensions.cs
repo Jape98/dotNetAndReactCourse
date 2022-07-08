@@ -21,8 +21,6 @@ namespace API.Extensions
             });
             services.AddDbContext<DataContext>(opt =>
             {
-                //var connectionString = config.GetConnectionString("WebApiDatabase");
-                //opt.UseSqlite(config.GetConnectionString("ConnectionStrings"));
                 opt.UseSqlServer(config.GetConnectionString("DB_CONNECTION_STRING"));
             });
             services.AddCors(opt =>
@@ -33,6 +31,7 @@ namespace API.Extensions
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials()
+                        .WithExposedHeaders("WWW-Authenticate", "Pagination")
                         .WithOrigins("http://localhost:3000");
                 });
             });
